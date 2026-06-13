@@ -1,0 +1,194 @@
+/* ----------------- V A R I A B L E S   &   G L O B A L S ----------------- */
+:root {
+    --bg-primary: #fdfcf9;
+    --bg-secondary: #bbbbbb;
+
+    --brand-primary: #73a961;
+    --brand-secondary: #8fcc79;
+    --brand-tertiary: #a7d099;
+    
+    --light-text: #ebe9fc;
+    --dark-text: black;
+
+    --radius: 10px;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg-primary);
+    margin: 0; /* reset default body margin */
+}
+
+.page-section {
+    margin-top: 20px;
+}
+
+
+/* -------------------------- T Y P O G R A P H Y -------------------------- */
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.muted {
+    color: #666; 
+    font-size: 0.9rem;
+}
+
+.error { 
+    border-radius: var(--radius);      /* soft corners */
+    border: 1px solid #ff0000;         /* subtle outline (better than harsh borders) */
+    background-color: rgba(255, 0, 0, 0.3);
+    padding: 10px;
+    display: none;
+}
+
+.error.active {
+    display: block;
+}
+
+/* ------------------------------ L A Y O U T ------------------------------ */
+
+/* Wrap the whole page content in this */
+.container {
+    max-width: 800px;      /* prevents content stretching too wide */
+    margin: 0 auto;        /* centers horizontally */
+    padding: 20px;         /* space from screen edges (important on mobile) */
+}
+
+/* Apply spacing between all children */
+.stack > * + * {
+    margin-top: 20px; /* consistent vertical rhythm */
+}
+
+/* CARD */
+.card {
+    background: white;                  /* separates from page background */
+    padding: 20px;                     /* internal spacing */
+    border-radius: var(--radius);      /* soft corners */
+    border: 1px solid #e5e5e5;         /* subtle outline (better than harsh borders) */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* very subtle depth */
+}
+
+/* -------------------------- C O M P O N E N T S -------------------------- */
+
+/* FORM */
+/* Grid layout */
+form {
+    display: grid;  /* treat the children as a grid, not a list */
+    grid-template-columns: 1fr 1fr; /* 50/50 column width split */
+    gap: 16px;    /* vertical and horizontal space between cells */
+}
+
+/* Stack the field items (label, input...) stack */
+.field {
+    display: flex;       
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field .hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+    line-height: 1.2;
+}
+
+/*
+Style the inputs so they have padding and rounded corners
+*/
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    font-size: 1rem;
+}
+
+/* When the user selects a field, highlight it */
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+}
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button, input[type="submit"] {
+    padding: 10px;
+    background: var(--brand-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    grid-column: span 2; /* span both columns */
+}
+
+button, input[type="submit"]:hover {
+    background: var(--brand-secondary); /* Highlight when the user hovers over the button */
+    transition: background 0.2s;
+}
+
+/* On mobile devices */
+@media (max-width: 768px) {
+    /* Single column form */
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    input[type="submit"] {
+        grid-column: span 1;
+    }
+}
+
+/* LOADER */
+.loaderDiv {
+    display: none;            /* hidden by default */
+    align-items: center;      /* vertical alignment */
+    justify-content: center;  /* center the whole block */
+    gap: 4px;                 /* small space between spinner and text */
+}
+
+.loaderDiv.active {
+    display: flex;            /* visible when active */
+}
+
+.loader {
+  border: 0.2rem solid #f3f3f3; /* Light grey */
+  border-top: 0.2rem solid var(--brand-primary); 
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* RESULTS */
+#result {
+    display: none;
+    text-align: center;
+}
+
+#result.active {
+    display: block;
+}
+
+#result h2{
+    font-size: 3rem;
+    margin: 0;
+}

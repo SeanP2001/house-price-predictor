@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Get the true width of the device display -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    </head>
+
+    <body>
+        <!-- Page container: controls width + centering -->
+        <div class="container stack">
+
+            <!-- Header Section -->
+            <div>
+                <h1>House Price Predictor</h1>
+                <div class="muted">
+                    Please note that the information given is <b>not conclusive</b> and is intended as a <b>starting point</b> for your research. This model was trained using <b>King County, Washington</b> house sales from <b>2014-2015</b>. Locations outside this region are not supported.
+                </div>
+            </div>
+            
+            <!-- Form Section Card -->
+            <div class="card stack">
+                <div>Please provide information about the property.</div>
+                <div id="form-error" class="error"></div>
+                <form id="house-info-form">
+                    <div class="field">
+                        <label for="lat">
+                            Latitude
+                        </label>
+                        <input 
+                            id="lat" 
+                            name="lat"
+                            type="number" 
+                            placeholder=""
+                            autocomplete="off"
+                            step="0.0001"
+                            min="-90"  
+                            max="90"
+                            required
+                        >
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="long">
+                            Longitude
+                        </label>
+                        <input 
+                            id="long"
+                            name="long" 
+                            type="number"
+                            placeholder=""
+                            autocomplete="off"
+                            min="-180"  
+                            max="180"
+                            step="0.0001"
+                            required
+                        >
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="bedrooms">
+                            Number of Bedrooms
+                        </label>
+                        <input 
+                            id="bedrooms"
+                            name="bedrooms"
+                            type="number" 
+                            placeholder=""
+                            min="1"  
+                            max="50"
+                            required
+                        >
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="bathrooms">
+                            Number of Bathrooms
+                        </label>
+                        <input
+                            id="bathrooms"
+                            name="bathrooms" 
+                            type="number"
+                            min="1"
+                            max="20"
+                            step="0.25"
+                            required
+                        >
+                        <div class="hint">
+                            0.5 (toilet+sink), 0.75 (toilet+sink+shower), 1 (full bath)
+                        </div>
+                        <div class="error"></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="sqft_living">
+                            Floor Area (sqft)
+                        </label>
+                        <input
+                            id="sqft_living"
+                            name="sqft_living" 
+                            type="number"
+                            min="50"
+                            max="180000"
+                            required
+                        >
+                        <div class="error"></div>
+                    </div>
+
+                    <input type="submit" value="Get Estimate">
+                </form>
+            </div>
+
+            <!-- Loader (visible while waiting for results) -->
+            <div class="loaderDiv">
+                <div class="loader"></div>
+                <div>Analysing...</div>
+            </div>
+
+            <!-- Result Section Card -->
+            <div id="result" class="card">
+                <h2 id="resultAmount"></h2>
+                <div class="muted">
+                    Estimated valuation<br>
+                    (based on 2014/15 sales in King County, WA)
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/js/script.js"></script>
+    </body>
+</html>
