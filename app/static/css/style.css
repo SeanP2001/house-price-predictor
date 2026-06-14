@@ -192,3 +192,10 @@ button, input[type="submit"]:hover {
     font-size: 3rem;
     margin: 0;
 }
+
+#map { 
+    width: 100%; 
+    aspect-ratio: 1 / 0.7;
+    border: none;
+    border-radius: var(--radius);
+}

@@ -150,3 +150,36 @@ function resetUI() {
     });
     document.getElementById("result").classList.remove("active");
 }
+
+
+// ------------------------------------ M A P ------------------------------------
+// Create a map instance of King County WA
+const map = L.map('map', {
+    maxBounds: [[47.1, -122.6], [47.8, -121.3]],    // Prevent the user from panning out of the region
+    maxBoundsViscosity: 1.0,                        // Solid boundary, no pullback effect
+    minZoom: 10                                     // Prevent zooming out too far
+}).setView([47.6, -122.3], 10);                     // Default to a view of the centre of the region (zoom level 10)
+
+// Get the map tiles from Open Street Map and add them to the map
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+// Create a marker/pin for the map
+let marker;
+
+// If the user clicks the map
+map.on('click', function (e) {
+    // Get the coordinates of where they clicked
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+
+    // Update lat&long input field values to the selected location
+    document.getElementById("lat").value = lat.toFixed(6);
+    document.getElementById("long").value = lng.toFixed(6);
+
+    // Place/move the map marker to that location
+    if (marker) {
+        marker.setLatLng(e.latlng);
+    } else {
+        marker = L.marker(e.latlng).addTo(map);
+    }
+});

@@ -55,4 +55,3 @@ This project is a proof of concept demonstrating end-to-end deployment of a mach
 - Training a model on a dataset covering a larger geographic region.
 - Splitting the bathroom input into clearer categories (full, half, ensuite) to reduce ambiguity.
 - Adding zipcode geocoding so users can input a zipcode instead of coordinates.
-- Adding an interactive map for location selection.
